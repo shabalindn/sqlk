@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lad-tech/sqlk.git"
+    "url": "git+https://github.com/be-true/sqlk.git"
   },
   "keywords": [
     "sql"
@@ -28,9 +28,9 @@
   "author": "eawapownikov@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lad-tech/sqlk/issues"
+    "url": "https://github.com/be-true/sqlk/issues"
   },
-  "homepage": "https://github.com/lad-tech/sqlk#readme",
+  "homepage": "https://github.com/be-true/sqlk#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/npm": "^9.0.1",
