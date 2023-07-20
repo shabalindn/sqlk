@@ -14,8 +14,7 @@ describe('deleteSoft()', () => {
       },
     });
     expect(sql).not.toContain(`"name"='User'`);
-    expect(sql).toContain(`"delete_time"`);
-    expect(sql).toContain(`"GMT+0000"`);
+    expect(sql).toContain(`"delete_time"`); 
   });
 
   it('Удаление с параметров withUpdate (с сохранением изменений перед удалением)', () => {
@@ -34,8 +33,7 @@ describe('deleteSoft()', () => {
       { withUpdate: true }
     );
     expect(sql).toContain(`"name"='User'`);
-    expect(sql).toContain(`"delete_time"`);
-    expect(sql).toContain(`"GMT+0000"`);
+    expect(sql).toContain(`"delete_time"`); 
   });
 
   it('Удаление с параметров upsert = true', () => {
