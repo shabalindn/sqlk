@@ -1,4 +1,5 @@
 import { deleteSoft } from '../src/deleteSoft';
+import { ParamsCollector } from '../src/helpers/collector';
 
 describe('deleteSoft()', () => {
   it('Обычное удаление', () => {
@@ -14,7 +15,23 @@ describe('deleteSoft()', () => {
       },
     });
     expect(sql).not.toContain(`"name"='User'`);
-    expect(sql).toContain(`"delete_time"`); 
+    expect(sql).toContain(`"delete_time"=now()`);
+  });
+
+  it('Сохранение удаленной записи', () => {
+    const sql = deleteSoft({
+      table: { name: 'user_catalog', pk: 'user_id' },
+      params: {
+        user_id: 'user_id',
+        name: 'User',
+      },
+      columns: {
+        user_id: ['string', true],
+        name: ['string', true],
+      },
+      collector: new ParamsCollector()
+    }, { upsert: true });
+    expect(sql).toContain(`"delete_time"=now()`);
   });
 
   it('Удаление с параметров withUpdate (с сохранением изменений перед удалением)', () => {
@@ -33,7 +50,7 @@ describe('deleteSoft()', () => {
       { withUpdate: true }
     );
     expect(sql).toContain(`"name"='User'`);
-    expect(sql).toContain(`"delete_time"`); 
+    expect(sql).toContain(`"delete_time"=now()`);
   });
 
   it('Удаление с параметров upsert = true', () => {

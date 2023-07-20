@@ -7,7 +7,7 @@ export const deleteSoft = (data: Upsert2Params, options?: TDeleteSoftOptions): s
   const pkValue = data.params[pk];
   let params = {
     [pk]: pkValue,
-    delete_time: new Date(),
+    delete_time: 'now()',
   };
   if (options?.withUpdate || options?.upsert) {
     params = {

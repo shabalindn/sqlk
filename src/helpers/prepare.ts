@@ -20,7 +20,9 @@ export const prepare = ({ table, params, collector }: ToStorage, types: ('insert
 
     const convert = converter(type);
     value_ = convert.process(value_);
-    if (willUpdate || willInsert) value_ = collector.param(value_, convert.quote);
+    if ((willUpdate || willInsert) && type !== 'raw') {
+      value_ = collector.param(value_, convert.quote);
+    }
     if (willInsert) {
       columns.push(`"${key}"`);
       values.push(value_);
