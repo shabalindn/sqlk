@@ -12,12 +12,12 @@ export type TConfig = {
 // prettier-ignore
 export type ToStorage = {
   /** Уникальный ключ модели */
-  table: { name: string, pk: string }, 
+  table: { name: string, pk: string },
   params: { [k: string]: [
-    /** Передаваемые данные */  
+    /** Передаваемые данные */
     data: any,
     /** Тип */
-    type: StorageType, 
+    type: StorageType,
     /** Не используется только в обновлении */
     updated?: boolean,
   ]},
@@ -29,14 +29,14 @@ export type StorageType = 'string' | 'number' | 'json' | 'raw' | 'array' | 'bool
 // prettier-ignore
 export type Upsert2Params = {
   /** Уникальный ключ модели */
-  table: { name: string, pk: string }, 
+  table: { name: string, pk: string },
   params: { [k: string]: any },
   columns: {
     [key in string]: [
-      type: StorageType, 
+      type: StorageType,
       /** Не используется только в обновлении */
       updated?: boolean,
-    ]
+    ] | false
   },
   collector?: Collector
 };

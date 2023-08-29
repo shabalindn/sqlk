@@ -4,8 +4,11 @@ import { ToStorage, Upsert2Params } from '../types';
 export const adapter = ({ table, params, columns, collector }: Upsert2Params): ToStorage => {
   const _params: ToStorage['params'] = {};
   for (const [key, value] of Object.entries(params)) {
-    if (columns[key] === undefined) throw new Error(`Ключ '${key}' переданный в params функции upsert2 не описан в options`);
-    _params[key] = [value, ...columns[key]];
+    const column = columns[key];
+    if (column === undefined) throw new Error(`Ключ '${key}' переданный в params функции upsert2 не описан в options`);
+    if (column !== false) {
+    _params[key] = [value, ...column];
+    }
   }
 
   return {

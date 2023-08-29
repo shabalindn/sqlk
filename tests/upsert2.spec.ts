@@ -31,4 +31,22 @@ describe('upsert2', () => {
       });
     expect(test).toThrowError();
   });
+
+
+  it('Column может быть false', () => {
+    const sql = upsert2({
+      table: { name: 'test', pk: 'id' },
+      params: {
+        id: '1cf49ea3-cbf7-4707-852e-e98b41a83cc7',
+        name: 'Автомобиль',
+      },
+      columns: {
+        id: ['string', true],
+        name: false,
+      },
+    });
+    expect(sql.indexOf(`"id"='1cf49ea3-cbf7-4707-852e-e98b41a83cc7'`)).toBeTruthy();
+    expect(sql.indexOf('name')).toBe(-1);
+    expect(sql.indexOf('Автомобиль')).toBe(-1);
+  });
 });
