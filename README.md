@@ -2,4 +2,3 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/lad-tech/stater/badge.svg)](https://snyk.io/test/github/sqlk/nsc-toolkit)
 
 # @lad-tech/sqlk - Набор функций для работы с SQL
-
