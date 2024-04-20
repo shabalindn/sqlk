@@ -15,8 +15,8 @@ const configs: TConverterConfig = {
     quote: true,
   },
   json: {
-    process: (value) => `'${JSON.stringify(value)}'::jsonb`,
-    quote: false,
+    process: (value) => value,
+    quote: true,
   },
   date: {
     process: (value) => value?.toISOString(),

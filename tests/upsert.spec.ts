@@ -42,19 +42,19 @@ describe('upsert', () => {
     }).toThrow();
   });
 
-  it('JSONB', () => {
+  it("JSONB", () => {
     const sql = upsert({
-      table: { name: 'table', pk: 'table_id' },
+      table: { name: "table", pk: "table_id" },
       params: {
-        table_id: ['id', 'string'],
-        list: [['asd', 'fgh'], 'json'],
-        object: [{ "a": 1, "b": 'string' }, 'json'],
+        table_id: ["id", "string"],
+        list: [["asd", "fgh"], "json"],
+        object: [{ a: 1, b: "string" }, "json"],
       },
     });
 
-    console.log(sql)
-    expect(sql).toContain(`'["asd","fgh"]'::jsonb, '{"a":1,"b":"string"}'::jsonb`);
+    expect(sql).toContain(`'["asd","fgh"]', '{"a":1,"b":"string"}'`);
   });
+
 
   it('Array', () => {
     const sql = upsert({
